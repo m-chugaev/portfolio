@@ -12,7 +12,9 @@ export function Footer() {
           <span>
             © {year} {profile.name}
           </span>
-          <span>{profile.roles}</span>
+          <span>
+            На создание этого сайта с 0 до появления на домене ушло 5 часов
+          </span>
         </div>
       </div>
     </footer>
