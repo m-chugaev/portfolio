@@ -22,19 +22,19 @@ export function TechStack() {
 
   const title = showRequests
     ? "Популярные запросы бизнеса сейчас"
-    : "Технологии, с которыми работаю уже 9 лет";
+    : "Технологии, с которыми работаю больше 8 лет";
 
   return (
-    <Card className="w-full max-w-[26rem] gap-5 border-white/15 bg-[#1a1d24]/85 py-6 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.65)] backdrop-blur-xl">
-      <CardHeader className="px-5 pb-0 sm:px-6">
-        <p className="text-[0.95rem] font-semibold tracking-tight text-white">
+    <Card className="w-full gap-4 border-white/15 bg-[#1a1d24]/85 py-5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.65)] backdrop-blur-xl min-[1500px]:gap-5 min-[1500px]:py-6">
+      <CardHeader className="px-4 pb-0 min-[1500px]:px-6">
+        <p className="text-sm font-semibold tracking-tight text-pretty text-white min-[1500px]:text-[0.95rem]">
           {title}
         </p>
       </CardHeader>
-      <CardContent className="px-5 sm:px-6">
+      <CardContent className="px-4 min-[1500px]:px-6">
         <ul
           key={showRequests ? "requests" : "skills"}
-          className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3"
+          className="grid grid-cols-2 gap-2 min-[400px]:grid-cols-3 min-[1500px]:gap-3"
         >
           {items.map((skill, index) => {
             const isToggle =
@@ -43,7 +43,7 @@ export function TechStack() {
 
             const content = (
               <>
-                <span className="relative grid size-5 shrink-0 place-items-center sm:size-[22px]">
+                <span className="relative grid size-4 shrink-0 place-items-center min-[1500px]:size-[22px]">
                   <span
                     aria-hidden="true"
                     className="absolute inset-0 rounded-full opacity-0 blur-md transition-opacity duration-200 group-hover:opacity-70"
@@ -54,7 +54,7 @@ export function TechStack() {
                     alt=""
                     width={22}
                     height={22}
-                    className="relative size-5 transition-transform duration-200 group-hover:scale-110 sm:size-[22px]"
+                    className="relative size-4 transition-transform duration-200 group-hover:scale-110 min-[1500px]:size-[22px]"
                     unoptimized
                   />
                 </span>
@@ -63,7 +63,7 @@ export function TechStack() {
             );
 
             const className =
-              "skill-chip group inline-flex min-h-11 w-full min-w-0 items-center gap-2 overflow-hidden rounded-[max(0.5rem,calc(1rem-1.25rem))] border border-white/10 bg-[#12151b]/90 px-2.5 py-2.5 text-left text-[0.78rem] font-medium leading-none text-white transition-[transform,border-color,background-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-[#1c212b] sm:min-h-12 sm:gap-2.5 sm:px-3 sm:text-[0.82rem]";
+              "skill-chip group inline-flex min-h-10 w-full min-w-0 items-center gap-1.5 overflow-hidden rounded-[max(0.5rem,calc(1rem-1.25rem))] border border-white/10 bg-[#12151b]/90 px-2 py-2 text-left text-[0.72rem] font-medium leading-none text-white transition-[transform,border-color,background-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-white/25 hover:bg-[#1c212b] sm:min-h-11 sm:text-[0.78rem] min-[1500px]:min-h-12 min-[1500px]:gap-2.5 min-[1500px]:px-3 min-[1500px]:py-2.5 min-[1500px]:text-[0.84rem]";
 
             const style = {
               "--skill-color": skill.color,

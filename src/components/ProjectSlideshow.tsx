@@ -54,14 +54,14 @@ export function ProjectSlideshow({
           priority={index === 0}
           sizes="100vw"
           className={cn(
-            "object-cover object-center transition-opacity duration-1000 ease-out",
+            "object-contain object-center p-2 transition-opacity duration-1000 ease-out md:object-cover md:p-0",
             index === active ? "opacity-100" : "opacity-0",
           )}
         />
       ))}
-      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/55 to-background/15" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-background/20" />
-      <div className="absolute right-5 bottom-5 z-10 flex gap-2 md:right-8 md:bottom-8">
+      <div className="absolute inset-0 hidden bg-gradient-to-r from-background/90 via-background/55 to-background/15 md:block" />
+      <div className="absolute inset-0 hidden bg-gradient-to-t from-background/80 via-transparent to-background/20 md:block" />
+      <div className="absolute right-3 bottom-3 z-10 flex gap-2 md:right-8 md:bottom-8">
         {images.map((src, index) => (
           <button
             key={src}

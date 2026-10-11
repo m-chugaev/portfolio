@@ -7,21 +7,21 @@ export function Advantages() {
       aria-label="Преимущества"
       className="relative border-t border-white/10 bg-background/35 backdrop-blur-md"
     >
-      <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:py-12">
+      <div className="mx-auto grid w-full max-w-6xl gap-6 px-4 py-8 sm:grid-cols-2 sm:gap-8 sm:py-10 lg:grid-cols-4 lg:py-12">
         {profile.advantages.map((item) => (
-          <article key={item.title} className="flex flex-col gap-3.5">
+          <article key={item.title} className="flex flex-col gap-2.5 sm:gap-3.5">
             <Image
               src={item.icon}
               alt=""
               width={32}
               height={32}
-              className="size-8 opacity-90"
+              className="size-7 opacity-90 sm:size-8"
               unoptimized
             />
-            <h3 className="text-[1.05rem] font-semibold tracking-tight">
+            <h3 className="text-base font-semibold tracking-tight sm:text-[1.05rem]">
               {item.title}
             </h3>
-            <p className="max-w-[18rem] text-sm leading-relaxed text-muted-foreground">
+            <p className="max-w-none text-sm leading-relaxed text-muted-foreground sm:max-w-[18rem]">
               {item.description}
             </p>
           </article>

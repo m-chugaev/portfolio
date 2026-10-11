@@ -34,25 +34,25 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-16 md:py-20" aria-labelledby="contact-title">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4">
+    <section id="contact" className="py-12 sm:py-16 md:py-20" aria-labelledby="contact-title">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 sm:gap-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="flex max-w-xl flex-col gap-2">
             <h2
               id="contact-title"
-              className="text-3xl font-semibold tracking-tight md:text-4xl"
+              className="text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl"
             >
               Контакты
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm text-muted-foreground sm:text-base">
               Напишите в Telegram — обсудим задачу и следующий шаг.
             </p>
           </div>
-          <Button size="lg" asChild>
+          <Button size="lg" className="w-full sm:w-auto" asChild>
             <a href={profile.contacts.telegram.href}>Обсудить проект</a>
           </Button>
         </div>
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
           {items.map((item) => {
             const Icon = item.icon;
             return (

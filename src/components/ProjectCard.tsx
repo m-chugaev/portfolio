@@ -20,18 +20,25 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const href = project.href;
 
   return (
-    <article className="relative aspect-[16/9] min-h-[18rem] overflow-hidden rounded-[1.75rem] border border-border/60 shadow-sm md:min-h-[22rem]">
-      <ProjectSlideshow images={project.images} alt={project.imageAlt} />
-      <div className="relative z-10 flex h-full items-end p-4 md:p-7 lg:p-8">
-        <Card className="w-full max-w-lg gap-4 border-border/40 bg-card/92 py-5 shadow-lg backdrop-blur-xl md:py-6">
-          <CardHeader className="gap-3 px-5 md:px-6">
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="default">{project.role}</Badge>
+    <article className="overflow-hidden rounded-2xl border border-border/60 bg-card/20 shadow-sm sm:rounded-[1.75rem] md:relative md:aspect-[16/9] md:min-h-[22rem]">
+      <div className="relative aspect-[16/10] w-full bg-[#12151b] md:absolute md:inset-0 md:aspect-auto">
+        <ProjectSlideshow images={project.images} alt={project.imageAlt} />
+      </div>
+
+      <div className="relative z-10 p-3 sm:p-4 md:absolute md:inset-0 md:flex md:h-full md:items-end md:p-7 lg:p-8">
+        <Card className="w-full max-w-lg gap-3 border-border/40 bg-card/94 py-4 shadow-lg backdrop-blur-xl sm:gap-4 sm:py-5 md:py-6">
+          <CardHeader className="gap-2.5 px-4 sm:gap-3 sm:px-5 md:px-6">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <Badge variant="default" className="max-w-full truncate">
+                {project.role}
+              </Badge>
               <Badge variant="secondary">{project.year}</Badge>
-              <Badge variant="outline">{project.context}</Badge>
+              <Badge variant="outline" className="max-w-full truncate">
+                {project.context}
+              </Badge>
             </div>
             <div className="flex flex-col gap-1.5">
-              <CardTitle className="font-display text-2xl tracking-tight md:text-3xl">
+              <CardTitle className="font-display text-xl tracking-tight sm:text-2xl md:text-3xl">
                 {href ? (
                   <a href={href} target="_blank" rel="noopener noreferrer">
                     {project.title}
@@ -45,8 +52,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
               </p>
             </div>
           </CardHeader>
-          <CardContent className="flex flex-col gap-3 px-5 md:px-6">
-            <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground md:text-[0.95rem]">
+          <CardContent className="flex flex-col gap-3 px-4 sm:px-5 md:px-6">
+            <p className="line-clamp-4 text-sm leading-relaxed text-muted-foreground sm:line-clamp-3 md:text-[0.95rem]">
               {project.description}
             </p>
             <div className="flex flex-wrap gap-1.5">
@@ -58,8 +65,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
           </CardContent>
           {href ? (
-            <CardFooter className="flex flex-wrap justify-between gap-2 px-5 md:px-6">
-              <Button asChild>
+            <CardFooter className="flex flex-col items-stretch gap-2 px-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:px-5 md:px-6">
+              <Button className="w-full sm:w-auto" asChild>
                 <a href={href} target="_blank" rel="noopener noreferrer">
                   Открыть проект
                   <ExternalLinkIcon data-icon="inline-end" />
@@ -67,7 +74,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
               </Button>
               <div className="flex flex-wrap items-center gap-2">
                 {project.linkLabel ? (
-                  <Button variant="outline" asChild>
+                  <Button
+                    variant="outline"
+                    className="flex-1 sm:flex-none"
+                    asChild
+                  >
                     <a href={href} target="_blank" rel="noopener noreferrer">
                       {project.linkLabel}
                     </a>
