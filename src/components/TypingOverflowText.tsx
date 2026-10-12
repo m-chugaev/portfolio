@@ -4,15 +4,30 @@ import { useEffect, useRef, useState } from "react";
 
 type TypingOverflowTextProps = {
   text: string;
+  alwaysTypeOnMobile?: boolean;
 };
 
-export function TypingOverflowText({ text }: TypingOverflowTextProps) {
+export function TypingOverflowText({
+  text,
+  alwaysTypeOnMobile = false,
+}: TypingOverflowTextProps) {
   const containerRef = useRef<HTMLSpanElement>(null);
   const measureRef = useRef<HTMLSpanElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
   const [overflows, setOverflows] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [display, setDisplay] = useState(text);
   const [offset, setOffset] = useState(0);
+
+  const shouldType = overflows || (alwaysTypeOnMobile && isMobile);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 639px)");
+    const sync = () => setIsMobile(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -30,7 +45,7 @@ export function TypingOverflowText({ text }: TypingOverflowTextProps) {
   }, [text]);
 
   useEffect(() => {
-    if (!overflows) {
+    if (!shouldType) {
       setDisplay(text);
       setOffset(0);
       return;
@@ -92,7 +107,7 @@ export function TypingOverflowText({ text }: TypingOverflowTextProps) {
     timer = window.setTimeout(tick, 500);
 
     return () => window.clearTimeout(timer);
-  }, [overflows, text]);
+  }, [shouldType, text]);
 
   return (
     <span
@@ -117,7 +132,7 @@ export function TypingOverflowText({ text }: TypingOverflowTextProps) {
         }}
       >
         {display}
-        {overflows ? (
+        {shouldType ? (
           <span className="ml-px inline-block animate-pulse opacity-70">|</span>
         ) : null}
       </span>

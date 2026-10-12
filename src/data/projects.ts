@@ -24,7 +24,7 @@ export const projects: Project[] = [
       "С нуля спроектировал backend и схему БД, собрал команду и довёл до продакшена модули прав, воронки найма, интеграций и биллинга.",
     year: "2025–2026",
     tags: ["PHP", "Laravel", "GraphQL", "PostgreSQL", "Docker", "Kubernetes"],
-    images: ["/promo/s1.png", "/promo/s2.png", "/promo/s3.png"],
+    images: ["/promo/s1.jpg", "/promo/s2.jpg", "/promo/s3.jpg"],
     imageAlt: "Интерфейс HRM SaaS: доступы, подбор и подписка",
   },
   {
@@ -39,7 +39,7 @@ export const projects: Project[] = [
     tags: ["PHP", "Laravel", "PostgreSQL", "GraphQL", "React"],
     href: "https://studybay.com",
     linkLabel: "studybay.com",
-    images: ["/promo/sb1.png", "/promo/sb2.png", "/promo/sb3.png"],
+    images: ["/promo/sb1.jpg", "/promo/sb2.jpg", "/promo/sb3.jpg"],
     imageAlt: "Интерфейс Studybay",
   },
   {
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     tags: ["Product", "Web", "Education"],
     href: "https://mgu-edu.ru",
     linkLabel: "mgu-edu.ru",
-    images: ["/promo/mgu1.png", "/promo/mgu2.png", "/promo/mgu3.png"],
+    images: ["/promo/mgu1.jpg", "/promo/mgu2.jpg", "/promo/mgu3.jpg"],
     imageAlt: "Сайт МГУ им. Петра Великого",
   },
   {
@@ -69,7 +69,7 @@ export const projects: Project[] = [
     tags: ["iOS", "Swift", "Product"],
     href: "https://apps.apple.com/ru/app/%D1%82%D1%80%D0%B5%D0%BA%D0%B5%D1%80-%D0%BF%D1%80%D0%B8%D0%B2%D1%8B%D1%87%D0%B5%D0%BA-%D0%B4%D0%B0%D1%82-%D0%B8-%D1%81%D0%BF%D0%B8%D1%81%D0%BA%D0%BE%D0%B2/id1569970464",
     linkLabel: "App Store",
-    images: ["/promo/lt1.png", "/promo/lt2.jpg", "/promo/lt3.png"],
+    images: ["/promo/lt1.jpg", "/promo/lt2.jpg", "/promo/lt3.jpg"],
     imageAlt: "Приложение Life Tracker",
   },
 ];

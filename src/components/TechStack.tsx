@@ -13,6 +13,12 @@ type SkillItem = {
   color: string;
 };
 
+const ALWAYS_TYPE_ON_MOBILE = new Set([
+  "PostgreSQL",
+  "JavaScript",
+  "Kubernetes",
+]);
+
 export function TechStack() {
   const [showRequests, setShowRequests] = useState(false);
 
@@ -59,7 +65,10 @@ export function TechStack() {
                     unoptimized
                   />
                 </span>
-                <TypingOverflowText text={skill.name} />
+                <TypingOverflowText
+                  text={skill.name}
+                  alwaysTypeOnMobile={ALWAYS_TYPE_ON_MOBILE.has(skill.name)}
+                />
               </>
             );
 
