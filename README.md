@@ -79,7 +79,7 @@ npm run build
 NEXT_PUBLIC_SITE_URL=https://ваш-домен.ru
 ```
 
-По умолчанию в `site.ts` указан `https://chugaev.ru` — поменяйте на реальный домен.
+По умолчанию в `site.ts` указан `https://web-dev.su` — при другом домене задайте `NEXT_PUBLIC_SITE_URL`.
 
 ## Деплой (статический хостинг)
 
