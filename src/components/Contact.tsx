@@ -1,4 +1,9 @@
-import { MailIcon, MessageCircleIcon, UserRoundIcon } from "lucide-react";
+import {
+  MailIcon,
+  MessageCircleIcon,
+  MessagesSquareIcon,
+  UserRoundIcon,
+} from "lucide-react";
 import { profile } from "@/data/profile";
 import { Button } from "@/components/ui/button";
 import {
@@ -49,7 +54,10 @@ export function Contact() {
             </p>
           </div>
           <Button size="lg" className="w-full sm:w-auto" asChild>
-            <a href={profile.contacts.telegram.href}>Обсудить проект</a>
+            <a href={profile.contacts.telegram.href}>
+              <MessagesSquareIcon data-icon="inline-start" />
+              Обсудить проект
+            </a>
           </Button>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">

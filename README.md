@@ -67,8 +67,19 @@ npm run build
 
 - `src/data/profile.ts` — имя, слоган, навыки, преимущества, контакты
 - `src/data/projects.ts` — проекты, годы, теги, ссылки, пути к превью
+- `src/data/site.ts` — URL сайта для Open Graph / превью в Telegram
 
 Превью проектов кладите в `public/promo/`, иконки — в `public/icons/`.
+Картинка для превью ссылки: `public/og.jpg` (1200×630).
+
+Для корректного превью в Telegram задайте домен:
+
+```bash
+# .env.local или переменная на хостинге
+NEXT_PUBLIC_SITE_URL=https://ваш-домен.ru
+```
+
+По умолчанию в `site.ts` указан `https://chugaev.ru` — поменяйте на реальный домен.
 
 ## Деплой (статический хостинг)
 

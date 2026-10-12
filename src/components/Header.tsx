@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { profile } from "@/data/profile";
 import { Button } from "@/components/ui/button";
+import { IMAGE_FALLBACK_ICON, SafeImage } from "@/components/SafeImage";
 
 const links = [
   { href: "#projects", label: "Проекты" },
@@ -13,12 +13,14 @@ export function Header() {
     <header className="fixed inset-x-0 top-0 z-20 border-b border-white/10 bg-background/10 backdrop-blur-xl supports-[backdrop-filter]:bg-background/5">
       <div className="mx-auto flex min-h-14 w-full max-w-6xl items-center justify-between gap-4 px-4 md:min-h-16 md:gap-8">
         <Link href="#top" className="flex min-w-0 items-center gap-2.5 sm:gap-3">
-          <Image
+          <SafeImage
             src="/logo.png"
             alt=""
             width={40}
             height={40}
             className="size-8 shrink-0 rounded-md object-contain md:size-9"
+            fallbackSrc={IMAGE_FALLBACK_ICON}
+            unoptimized
             priority
           />
           <span className="flex min-w-0 flex-col leading-tight">

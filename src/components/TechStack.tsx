@@ -2,9 +2,9 @@
 
 import type { CSSProperties } from "react";
 import { useState } from "react";
-import Image from "next/image";
 import { profile } from "@/data/profile";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { IMAGE_FALLBACK_ICON, SafeImage } from "@/components/SafeImage";
 import { TypingOverflowText } from "@/components/TypingOverflowText";
 
 type SkillItem = {
@@ -34,7 +34,7 @@ export function TechStack() {
       <CardContent className="px-4 min-[1500px]:px-6">
         <ul
           key={showRequests ? "requests" : "skills"}
-          className="grid grid-cols-2 gap-2 min-[400px]:grid-cols-3 min-[1500px]:gap-3"
+          className="grid grid-cols-3 gap-2 min-[1500px]:gap-3"
         >
           {items.map((skill, index) => {
             const isToggle =
@@ -49,12 +49,13 @@ export function TechStack() {
                     className="absolute inset-0 rounded-full opacity-0 blur-md transition-opacity duration-200 group-hover:opacity-70"
                     style={{ backgroundColor: skill.color }}
                   />
-                  <Image
+                  <SafeImage
                     src={skill.icon}
                     alt=""
                     width={22}
                     height={22}
                     className="relative size-4 transition-transform duration-200 group-hover:scale-110 min-[1500px]:size-[22px]"
+                    fallbackSrc={IMAGE_FALLBACK_ICON}
                     unoptimized
                   />
                 </span>

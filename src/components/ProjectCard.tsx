@@ -72,19 +72,24 @@ export function ProjectCard({ project }: ProjectCardProps) {
                   <ExternalLinkIcon data-icon="inline-end" />
                 </a>
               </Button>
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex w-full items-stretch sm:w-auto sm:flex-wrap sm:items-center sm:gap-2">
                 {project.linkLabel ? (
-                  <Button
-                    variant="outline"
-                    className="flex-1 sm:flex-none"
-                    asChild
-                  >
-                    <a href={href} target="_blank" rel="noopener noreferrer">
-                      {project.linkLabel}
-                    </a>
-                  </Button>
-                ) : null}
-                <CopyLinkButton href={href} />
+                  <div className="flex min-w-0 flex-1 overflow-hidden rounded-full border border-border bg-background/70 shadow-xs sm:contents">
+                    <Button
+                      variant="outline"
+                      className="min-w-0 flex-1 rounded-none rounded-l-full border-0 bg-transparent shadow-none sm:flex-none sm:rounded-full sm:border sm:bg-background/70 sm:shadow-xs"
+                      asChild
+                    >
+                      <a href={href} target="_blank" rel="noopener noreferrer">
+                        <span className="truncate">{project.linkLabel}</span>
+                      </a>
+                    </Button>
+                    <CopyLinkButton href={href} compact className="sm:hidden" />
+                  </div>
+                ) : (
+                  <CopyLinkButton href={href} className="sm:hidden" />
+                )}
+                <CopyLinkButton href={href} className="hidden sm:inline-flex" />
               </div>
             </CardFooter>
           ) : null}

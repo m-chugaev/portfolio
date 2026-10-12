@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
+import { IMAGE_FALLBACK, SafeImage } from "@/components/SafeImage";
 import { cn } from "@/lib/utils";
 
 type ProjectSlideshowProps = {
@@ -15,11 +15,12 @@ export function ProjectSlideshow({
   alt,
   intervalMs = 4200,
 }: ProjectSlideshowProps) {
+  const slides = images.length > 0 ? images : [IMAGE_FALLBACK];
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    if (images.length < 2) {
+    if (slides.length < 2) {
       return;
     }
 
@@ -33,11 +34,11 @@ export function ProjectSlideshow({
     }
 
     const timer = window.setInterval(() => {
-      setActive((current) => (current + 1) % images.length);
+      setActive((current) => (current + 1) % slides.length);
     }, intervalMs);
 
     return () => window.clearInterval(timer);
-  }, [images.length, intervalMs, paused]);
+  }, [slides.length, intervalMs, paused]);
 
   return (
     <div
@@ -45,8 +46,8 @@ export function ProjectSlideshow({
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {images.map((src, index) => (
-        <Image
+      {slides.map((src, index) => (
+        <SafeImage
           key={src}
           src={src}
           alt={index === active ? alt : ""}
@@ -62,7 +63,7 @@ export function ProjectSlideshow({
       <div className="absolute inset-0 hidden bg-gradient-to-r from-background/90 via-background/55 to-background/15 md:block" />
       <div className="absolute inset-0 hidden bg-gradient-to-t from-background/80 via-transparent to-background/20 md:block" />
       <div className="absolute right-3 bottom-3 z-10 flex gap-2 md:right-8 md:bottom-8">
-        {images.map((src, index) => (
+        {slides.map((src, index) => (
           <button
             key={src}
             type="button"
