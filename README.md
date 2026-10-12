@@ -6,8 +6,7 @@
 
 - **Next.js 15** (App Router) + **React 19** + **TypeScript**
 - **Tailwind CSS v4** + компоненты в стиле shadcn/ui
-- Запуск как **Node.js-сервис** (`next start`), не static export
-- Оптимизация изображений через `sharp`
+- Сборка в **статику** (`output: "export"`) — результат в папке `out/`
 
 ## Возможности
 
@@ -29,6 +28,7 @@ public/
   promo/         # скриншоты проектов
   icons/         # иконки технологий и преимуществ
   hero-bg.jpg    # фон hero
+out/             # статическая сборка (после npm run build)
 ```
 
 ## Требования
@@ -45,23 +45,21 @@ npm run dev
 
 Откройте [http://localhost:3000](http://localhost:3000).
 
-### Production
+### Production (статика)
 
 ```bash
 npm run build
-npm start
 ```
 
-Сервер слушает порт `3000` (или `PORT` из окружения).
+Готовые файлы появятся в `out/`. Эту папку можно отдавать любым статическим хостингом (nginx, Cloudflare Pages, Timeweb и т.п.).
 
 ### Другие команды
 
-| Команда        | Описание              |
-| -------------- | --------------------- |
-| `npm run dev`  | Разработка (Turbopack)|
-| `npm run build`| Сборка                |
-| `npm start`    | Production-сервер     |
-| `npm run lint` | ESLint                |
+| Команда         | Описание               |
+| --------------- | ---------------------- |
+| `npm run dev`   | Разработка (Turbopack) |
+| `npm run build` | Сборка статики в `out/`|
+| `npm run lint`  | ESLint                 |
 
 ## Контент
 
@@ -72,12 +70,14 @@ npm start
 
 Превью проектов кладите в `public/promo/`, иконки — в `public/icons/`.
 
-## Деплой
+## Деплой (статический хостинг)
 
-Любой хостинг с Node.js: Vercel, собственный VPS, Docker и т.п.
+Пример настроек:
 
-```bash
-npm run build && npm start
-```
+| Поле                 | Значение        |
+| -------------------- | --------------- |
+| Команда сборки       | `npm run build` |
+| Директория сборки    | `out`           |
+| Путь до проекта      | корень репо     |
 
-На Vercel достаточно подключить репозиторий — framework preset Next.js определится сам.
+Node.js-сервер (`npm start`) не нужен.
