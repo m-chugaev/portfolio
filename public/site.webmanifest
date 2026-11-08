@@ -2,6 +2,10 @@
   "name": "Михаил Чугаев",
   "short_name": "Чугаев",
   "description": "Разрабатываю веб-приложения и сайты под ключ",
+  "lang": "ru",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -16,6 +20,5 @@
   ],
   "theme_color": "#2a2d38",
   "background_color": "#2a2d38",
-  "display": "standalone",
-  "start_url": "/"
+  "display": "standalone"
 }

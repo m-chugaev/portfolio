@@ -5,30 +5,27 @@ import "@fontsource/ibm-plex-sans/600.css";
 import "@fontsource/ibm-plex-sans/cyrillic-400.css";
 import "@fontsource/ibm-plex-sans/cyrillic-500.css";
 import "@fontsource/ibm-plex-sans/cyrillic-600.css";
+import { JsonLd } from "@/components/JsonLd";
+import { YandexMetrika } from "@/components/YandexMetrika";
 import { profile } from "@/data/profile";
 import { site } from "@/data/site";
+import { seo } from "@/lib/seo";
 import "./globals.css";
-
-const title = `${profile.name} — сайты и приложения под ключ`;
-const description = `${profile.headline} ${profile.headlineAccent}. ${profile.slogan}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title,
-  description,
+  title: seo.title,
+  description: seo.description,
   applicationName: profile.name,
   authors: [{ name: profile.name, url: site.url }],
   creator: profile.name,
-  keywords: [
-    "fullstack",
-    "разработчик",
-    "Laravel",
-    "React",
-    "портфолио",
-    "Михаил Чугаев",
-  ],
+  keywords: [...seo.keywords],
+  manifest: "/site.webmanifest",
   alternates: {
     canonical: "/",
+    types: {
+      "text/plain": "/llms.txt",
+    },
   },
   icons: {
     icon: [
@@ -43,23 +40,23 @@ export const metadata: Metadata = {
     locale: site.locale,
     url: "/",
     siteName: profile.name,
-    title,
-    description,
+    title: seo.title,
+    description: seo.description,
     images: [
       {
-        url: "/og.jpg",
-        width: 1200,
-        height: 630,
-        alt: `${profile.name} — ${profile.headlineAccent}`,
-        type: "image/jpeg",
+        url: site.og.path,
+        width: site.og.width,
+        height: site.og.height,
+        alt: seo.ogAlt,
+        type: site.og.type,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
-    images: ["/og.jpg"],
+    title: seo.title,
+    description: seo.description,
+    images: [site.og.path],
   },
   robots: {
     index: true,
@@ -81,7 +78,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className="dark">
-      <body className="overflow-x-clip">{children}</body>
+      <body className="overflow-x-clip">
+        <JsonLd />
+        {children}
+        <YandexMetrika />
+      </body>
     </html>
   );
 }
