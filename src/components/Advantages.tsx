@@ -3,10 +3,13 @@ import { IMAGE_FALLBACK_ICON, SafeImage } from "@/components/SafeImage";
 
 export function Advantages() {
   return (
-    <div
-      aria-label="Преимущества"
+    <section
+      aria-labelledby="advantages-title"
       className="relative border-t border-white/10 bg-background/35 backdrop-blur-md"
     >
+      <h2 id="advantages-title" className="sr-only">
+        Преимущества
+      </h2>
       <div className="mx-auto grid w-full max-w-6xl gap-6 px-4 py-8 sm:grid-cols-2 sm:gap-8 sm:py-10 lg:grid-cols-4 lg:py-12">
         {profile.advantages.map((item) => (
           <article key={item.title} className="flex flex-col gap-2.5 sm:gap-3.5">
@@ -28,6 +31,6 @@ export function Advantages() {
           </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

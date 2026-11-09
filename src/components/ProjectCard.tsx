@@ -7,7 +7,6 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { CopyLinkButton } from "./CopyLinkButton";
 import { ProjectSlideshow } from "./ProjectSlideshow";
@@ -38,7 +37,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               </Badge>
             </div>
             <div className="flex flex-col gap-1.5">
-              <CardTitle className="font-display text-xl tracking-tight sm:text-2xl md:text-3xl">
+              <h3 className="font-display text-xl leading-none font-semibold tracking-tight sm:text-2xl md:text-3xl">
                 {href ? (
                   <a href={href} target="_blank" rel="noopener noreferrer">
                     {project.title}
@@ -46,7 +45,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 ) : (
                   project.title
                 )}
-              </CardTitle>
+              </h3>
               <p className="text-sm leading-snug md:text-base">
                 {project.product}
               </p>

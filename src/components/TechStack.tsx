@@ -33,9 +33,9 @@ export function TechStack() {
   return (
     <Card className="w-full gap-4 border-white/15 bg-[#1a1d24]/85 py-5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.65)] backdrop-blur-xl min-[1500px]:gap-5 min-[1500px]:py-6">
       <CardHeader className="px-4 pb-0 min-[1500px]:px-6">
-        <p className="text-sm font-semibold tracking-tight text-pretty text-white min-[1500px]:text-[0.95rem]">
+        <h2 className="text-sm font-semibold tracking-tight text-pretty text-white min-[1500px]:text-[0.95rem]">
           {title}
-        </p>
+        </h2>
       </CardHeader>
       <CardContent className="px-4 min-[1500px]:px-6">
         <ul

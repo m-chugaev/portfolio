@@ -15,19 +15,22 @@
 - Карточки проектов со слайдшоу превью и годами
 - Блок «Это не все проекты» с дополнительными направлениями
 - Адаптив под мобильные и десктоп
+- SEO/OG, robots, sitemap, JSON-LD и Яндекс Метрика
 
 ## Структура
 
 ```
 src/
-  app/           # layout, страница, глобальные стили
-  components/    # Hero, TechStack, проекты, контакты, UI
-  data/          # profile.ts, projects.ts — контент сайта
-  lib/           # утилиты
+  app/           # layout, страница, robots.ts, sitemap.ts, стили
+  components/    # Hero, TechStack, проекты, контакты, UI, JSON-LD, Метрика
+  data/          # site.ts, profile.ts, projects.ts — контент сайта
+  lib/           # утилиты и SEO/JSON-LD
 public/
   promo/         # скриншоты проектов
   icons/         # иконки технологий и преимуществ
   hero-bg.jpg    # фон hero
+  og.jpg         # превью ссылки 1200×629
+  llms.txt       # краткое описание сайта для языковых моделей
 out/             # статическая сборка (после npm run build)
 ```
 
@@ -67,19 +70,30 @@ npm run build
 
 - `src/data/profile.ts` — имя, слоган, навыки, преимущества, контакты
 - `src/data/projects.ts` — проекты, годы, теги, ссылки, пути к превью
-- `src/data/site.ts` — URL сайта для Open Graph / превью в Telegram
+- `src/data/site.ts` — прод-URL, Open Graph, счётчик Яндекс Метрики
+- `src/lib/seo.ts` — title, description, keywords, JSON-LD
 
 Превью проектов кладите в `public/promo/`, иконки — в `public/icons/`.
-Картинка для превью ссылки: `public/og.jpg` (1200×630).
+Картинка для превью ссылки: `public/og.jpg` (фактически 1200×629; размеры в meta совпадают с файлом).
 
-Для корректного превью в Telegram задайте домен:
+## SEO и превью ссылок
+
+Canonical, Open Graph и Twitter Card собираются из `site.url`. На продакшене это `https://web-dev.su` (без www: такой хост сейчас не резолвится). После `npm run build` в `out/` также появляются:
+
+- `robots.txt` и `sitemap.xml`
+- JSON-LD (`Person`, `WebSite`, `ProfilePage`, списки кейсов и запросов бизнеса)
+- `llms.txt` — фактическое описание сайта для AI-поиска, не сигнал ранжирования
+
+Для корректного превью в Telegram задайте домен **до** сборки:
 
 ```bash
 # .env.local или переменная на хостинге
-NEXT_PUBLIC_SITE_URL=https://ваш-домен.ru
+NEXT_PUBLIC_SITE_URL=https://web-dev.su
 ```
 
-По умолчанию в `site.ts` указан `https://web-dev.su` — при другом домене задайте `NEXT_PUBLIC_SITE_URL`.
+По умолчанию в `site.ts` указан `https://web-dev.su`. После смены картинки или meta сбросьте кэш мессенджеров (WebpageBot и аналоги).
+
+На сайте подключена Яндекс Метрика, счётчик `114130745` (`ssr`, webvisor, clickmap, ecommerce/`dataLayer`, accurateTrackBounce, trackLinks). Скрипт грузится один раз через `next/script`; noscript-пиксель есть в HTML. Хостинг сейчас без CSP; если появится — нужны `mc.yandex.ru` / `mc.yandex.com`.
 
 ## Деплой (статический хостинг)
 
