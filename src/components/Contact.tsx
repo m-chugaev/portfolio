@@ -4,7 +4,9 @@ import {
   MessagesSquareIcon,
   UserRoundIcon,
 } from "lucide-react";
+import Link from "next/link";
 import { profile } from "@/data/profile";
+import { SERVICES_INDEX_PATH } from "@/data/services";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -50,7 +52,15 @@ export function Contact() {
               Контакты
             </h2>
             <p className="text-sm text-muted-foreground sm:text-base">
-              Напишите в Telegram — обсудим задачу и следующий шаг.
+              Напишите в Telegram — обсудим задачу и следующий шаг. Список
+              направлений — на странице{" "}
+              <Link
+                href={SERVICES_INDEX_PATH}
+                className="font-medium text-primary hover:underline"
+              >
+                услуг
+              </Link>
+              .
             </p>
           </div>
           <Button size="lg" className="w-full sm:w-auto" asChild>

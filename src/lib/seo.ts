@@ -6,6 +6,13 @@ import {
   type Project,
   projects,
 } from "@/data/projects";
+import {
+  SERVICES_INDEX_PATH,
+  servicePath,
+  services,
+  servicesIndex,
+  type Service,
+} from "@/data/services";
 import { site, siteOrigin } from "@/data/site";
 
 export const seo = {
@@ -123,6 +130,14 @@ function personNode() {
     image: absoluteUrl(site.og.path),
     sameAs: [profile.contacts.telegram.href, profile.contacts.habr.href],
     knowsAbout,
+    makesOffer: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.h1,
+        url: absoluteUrl(servicePath(service.id)),
+      },
+    })),
     workExample: projects.map((project) => ({
       "@type":
         project.jsonLdType === "SoftwareApplication"
@@ -192,6 +207,17 @@ export function getHomePageGraph() {
           name: item.name,
         })),
       },
+      {
+        "@type": "ItemList",
+        name: "Услуги",
+        itemListElement: services.map((service, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: service.h1,
+          description: service.cardPitch,
+          url: absoluteUrl(servicePath(service.id)),
+        })),
+      },
     ],
   };
 }
@@ -228,6 +254,110 @@ export function getProjectsIndexGraph() {
       breadcrumbNode(pageUrl, [
         { name: "Главная", path: "/" },
         { name: "Проекты", path: PROJECTS_INDEX_PATH },
+      ]),
+    ],
+  };
+}
+
+export function getServicesIndexGraph() {
+  const pageUrl = absoluteUrl(SERVICES_INDEX_PATH);
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: servicesIndex.seoTitle,
+        description: servicesIndex.seoDescription,
+        inLanguage: "ru",
+        isPartOf: { "@id": websiteId() },
+        about: { "@id": personId() },
+        breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${pageUrl}#list`,
+        name: "Услуги",
+        itemListElement: services.map((service, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: service.h1,
+          description: service.cardPitch,
+          url: absoluteUrl(servicePath(service.id)),
+        })),
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${pageUrl}#faq`,
+        mainEntity: servicesIndex.faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      },
+      breadcrumbNode(pageUrl, [
+        { name: "Главная", path: "/" },
+        { name: "Услуги", path: SERVICES_INDEX_PATH },
+      ]),
+    ],
+  };
+}
+
+export function getServicePageGraph(service: Service) {
+  const path = servicePath(service.id);
+  const pageUrl = absoluteUrl(path);
+  const serviceId = `${pageUrl}#service`;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: service.seoTitle,
+        description: service.seoDescription,
+        inLanguage: "ru",
+        isPartOf: { "@id": websiteId() },
+        about: { "@id": serviceId },
+        mainEntity: { "@id": serviceId },
+        breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+      },
+      {
+        "@type": "Service",
+        "@id": serviceId,
+        name: service.h1,
+        description: service.seoDescription,
+        url: pageUrl,
+        serviceType: service.serviceType,
+        provider: { "@id": personId() },
+        areaServed: {
+          "@type": "Country",
+          name: "Россия",
+        },
+        availableLanguage: "ru",
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${pageUrl}#faq`,
+        mainEntity: service.faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      },
+      breadcrumbNode(pageUrl, [
+        { name: "Главная", path: "/" },
+        { name: "Услуги", path: SERVICES_INDEX_PATH },
+        { name: service.navLabel, path },
       ]),
     ],
   };

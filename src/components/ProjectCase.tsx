@@ -7,6 +7,11 @@ import {
   projectPath,
   type Project,
 } from "@/data/projects";
+import {
+  SERVICES_INDEX_PATH,
+  getServicesForProject,
+  servicePath,
+} from "@/data/services";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Breadcrumbs } from "./Breadcrumbs";
@@ -49,6 +54,7 @@ function ItemList({ items }: { items: string[] }) {
 
 export function ProjectCase({ project }: ProjectCaseProps) {
   const others = getOtherProjects(project.id);
+  const relatedServices = getServicesForProject(project.id);
   const allLinks = [
     ...(project.href && project.linkLabel
       ? [{ href: project.href, label: project.linkLabel }]
@@ -184,6 +190,55 @@ export function ProjectCase({ project }: ProjectCaseProps) {
           ) : null}
         </aside>
       </div>
+
+      <section
+        className="flex flex-col gap-4"
+        aria-labelledby="related-services"
+      >
+        <h2
+          id="related-services"
+          className="text-xl font-semibold tracking-tight sm:text-2xl"
+        >
+          {relatedServices.length > 0 ? "Связанные услуги" : "Услуги"}
+        </h2>
+        {relatedServices.length === 0 ? (
+          <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+            Этот кейс не привязан к отдельному лендингу услуги. Направления,
+            которые можно обсудить, собраны на{" "}
+            <Link
+              href={SERVICES_INDEX_PATH}
+              className="font-medium text-primary hover:underline"
+            >
+              странице услуг
+            </Link>
+            .
+          </p>
+        ) : (
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {relatedServices.map((service) => (
+              <li key={service.id}>
+                <Link
+                  href={servicePath(service.id)}
+                  className="flex h-full flex-col gap-2 rounded-2xl border border-border/60 bg-card/40 p-4 transition-colors hover:border-primary/40"
+                >
+                  <span className="font-medium tracking-tight">{service.h1}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {service.cardPitch}
+                  </span>
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link
+                href={SERVICES_INDEX_PATH}
+                className="flex h-full flex-col justify-center gap-2 rounded-2xl border border-dashed border-border/60 bg-card/20 p-4 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+              >
+                Все услуги
+              </Link>
+            </li>
+          </ul>
+        )}
+      </section>
 
       {others.length > 0 ? (
         <section className="flex flex-col gap-4" aria-labelledby="other-cases">

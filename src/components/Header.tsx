@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { profile } from "@/data/profile";
 import { PROJECTS_INDEX_PATH } from "@/data/projects";
+import { SERVICES_INDEX_PATH } from "@/data/services";
 import { Button } from "@/components/ui/button";
 import { IMAGE_FALLBACK_ICON, SafeImage } from "@/components/SafeImage";
 
 const links = [
+  { href: SERVICES_INDEX_PATH, label: "Услуги" },
   { href: PROJECTS_INDEX_PATH, label: "Проекты" },
   { href: "/#contact", label: "Контакты" },
 ];
+
+const mobileLinks = links.slice(0, 2);
 
 export function Header() {
   return (
@@ -34,9 +38,20 @@ export function Header() {
           </span>
         </Link>
 
-        <p className="shrink-0 text-right text-xs text-muted-foreground sm:text-sm md:hidden">
-          {profile.roles}
-        </p>
+        <nav
+          className="flex shrink-0 items-center gap-0.5 md:hidden"
+          aria-label="Разделы"
+        >
+          {mobileLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="inline-flex min-h-10 items-center rounded-full px-3 text-sm font-medium text-foreground/90 transition-colors hover:bg-white/10 hover:text-foreground"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
         <nav
           className="hidden flex-1 items-center justify-end gap-1.5 md:flex md:gap-2 lg:gap-3"

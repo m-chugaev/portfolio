@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { ProjectGrid } from "@/components/ProjectGrid";
+import { ServicesPreview } from "@/components/ServicesPreview";
 import { buildPageMetadata, getHomePageGraph, seo } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
@@ -19,6 +20,7 @@ export default function HomePage() {
       <Header />
       <main>
         <Hero />
+        <ServicesPreview />
         <ProjectGrid />
         <Contact />
       </main>

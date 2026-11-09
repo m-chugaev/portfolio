@@ -2,6 +2,7 @@ import Link from "next/link";
 import { additionalExperience } from "@/data/experience";
 import { projectPath, projects } from "@/data/projects";
 import { profile } from "@/data/profile";
+import { SERVICES_INDEX_PATH } from "@/data/services";
 import { Badge } from "@/components/ui/badge";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { MoreWork } from "./MoreWork";
@@ -24,7 +25,15 @@ export function ProjectsIndex() {
           <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
             Избранные кейсы с сайта: роль, стек и то, что можно рассказать
             публично. Подробности — на отдельных страницах, чтобы их находили
-            поиск и можно было открыть ссылкой.
+            поиск и можно было открыть ссылкой. Услуги, под которые этот опыт
+            ложится, собраны на{" "}
+            <Link
+              href={SERVICES_INDEX_PATH}
+              className="font-medium text-primary hover:underline"
+            >
+              отдельной странице
+            </Link>
+            .
           </p>
         </div>
       </header>

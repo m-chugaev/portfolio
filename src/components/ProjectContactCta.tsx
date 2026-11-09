@@ -1,6 +1,7 @@
 import { ArrowLeftIcon, MessagesSquareIcon } from "lucide-react";
 import Link from "next/link";
 import { profile } from "@/data/profile";
+import { SERVICES_INDEX_PATH } from "@/data/services";
 import { Button } from "@/components/ui/button";
 
 export function ProjectContactCta() {
@@ -28,6 +29,14 @@ export function ProjectContactCta() {
               <MessagesSquareIcon data-icon="inline-start" />
               Написать в Telegram
             </a>
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            className="w-full sm:w-auto"
+            asChild
+          >
+            <Link href={SERVICES_INDEX_PATH}>Услуги</Link>
           </Button>
           <Button
             size="lg"

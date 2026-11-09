@@ -1,6 +1,6 @@
 # Портфолио — Михаил Чугаев
 
-Личный сайт-портфолио fullstack-разработчика и тимлида. Тёмный hero с фото, блок технологий (с переключением на бизнес-запросы), избранные кейсы и контакты.
+Личный сайт-портфолио fullstack-разработчика и тимлида. Тёмный hero с фото, блок технологий (с переключением на бизнес-запросы), услуги, избранные кейсы и контакты.
 
 ## Стек
 
@@ -13,7 +13,7 @@
 - Hero на весь экран: фото, CTA в Telegram, стек технологий
 - Переключение «… и другие…» → популярные бизнес-запросы
 - Карточки проектов со слайдшоу превью и годами, ссылка на страницу кейса
-- Отдельные SEO-страницы кейсов (`/projects/<slug>`) и индекс `/projects`
+- SEO-страницы услуг (`/services`, `/services/<slug>`) и кейсов (`/projects/<slug>`)
 - Блок «Это не все проекты» с дополнительными направлениями
 - Адаптив под мобильные и десктоп
 - SEO/OG, robots, sitemap, JSON-LD и Яндекс Метрика
@@ -22,9 +22,9 @@
 
 ```
 src/
-  app/           # layout, главная, /projects, robots.ts, sitemap.ts, стили
-  components/    # Hero, TechStack, проекты, кейсы, контакты, UI, JSON-LD, Метрика
-  data/          # site.ts, profile.ts, projects.ts, experience.ts
+  app/           # layout, главная, /services, /projects, robots.ts, sitemap.ts, стили
+  components/    # Hero, TechStack, услуги, проекты, кейсы, контакты, UI, JSON-LD, Метрика
+  data/          # site.ts, profile.ts, services.ts, projects.ts, experience.ts
   lib/           # утилиты и SEO/JSON-LD
 public/
   promo/         # скриншоты проектов
@@ -70,6 +70,7 @@ npm run build
 Основные тексты и данные правятся в:
 
 - `src/data/profile.ts` — имя, слоган, навыки, преимущества, контакты
+- `src/data/services.ts` — тексты лендингов услуг, FAQ, связанность с кейсами
 - `src/data/projects.ts` — проекты, годы, теги, ссылки, тексты страниц кейсов
 - `src/data/experience.ts` — дополнительный опыт без отдельных страниц кейсов
 - `src/data/site.ts` — прод-URL, Open Graph, счётчик Яндекс Метрики
@@ -82,10 +83,10 @@ npm run build
 
 Canonical, Open Graph и Twitter Card собираются из `site.url`. На продакшене это `https://web-dev.su` (без www: такой хост сейчас не резолвится). У каждой страницы свой title, description и canonical. После `npm run build` в `out/` также появляются:
 
-- `robots.txt` и `sitemap.xml` (главная, `/projects/` и страницы кейсов)
+- `robots.txt` и `sitemap.xml` (главная, `/services/`, лендинги услуг, `/projects/` и страницы кейсов)
 - В `next.config.ts` включён `trailingSlash`, чтобы статический хост отдавал `/projects/` как папку с `index.html`
-- JSON-LD: на всех страницах `Person` и `WebSite`; на главной — `ProfilePage` и списки; на кейсах — `CreativeWork` / `SoftwareApplication` и `BreadcrumbList`
-- `llms.txt` — фактическое описание сайта и URL кейсов для AI-поиска, не сигнал ранжирования
+- JSON-LD: на всех страницах `Person` и `WebSite`; на главной — `ProfilePage` и списки; на услугах — `Service`, `FAQPage` и `BreadcrumbList`; на кейсах — `CreativeWork` / `SoftwareApplication` и `BreadcrumbList`
+- `llms.txt` — фактическое описание сайта, URL услуг и кейсов для AI-поиска, не сигнал ранжирования
 
 Для корректного превью в Telegram задайте домен **до** сборки:
 
