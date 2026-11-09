@@ -18,6 +18,15 @@ CTA на сайте: «Обсудить проект» — Telegram @Allmore.
 
 Роли на сайте: Backend · Frontend · Lead.
 
+## Страницы
+
+- Главная: https://web-dev.su
+- Индекс кейсов: https://web-dev.su/projects/
+- HRM SaaS: https://web-dev.su/projects/hrm-saas/
+- Studybay: https://web-dev.su/projects/studybay/
+- МГУ им. Петра Великого: https://web-dev.su/projects/mgu/
+- Life Tracker: https://web-dev.su/projects/life-tracker/
+
 ## Стек (блок на главной)
 
 PHP, Laravel, PostgreSQL, React, JavaScript, Docker, Kubernetes, Redis.
@@ -35,10 +44,12 @@ AI-интеграции, Telegram-боты, Автоматизация, Личн
 
 ## Кейсы на сайте
 
-1. HRM SaaS (2025–2026), роль Team Lead / Tech Lead. SaaS для управления персоналом: доступы, подбор и подписки. Публичной ссылки на сайте нет.
-2. Studybay (2020–2025), роль Senior Fullstack. Крупный образовательный сервис для студентов. Ссылка: https://studybay.com
-3. МГУ им. Петра Великого (2024), роль Product & Web. Сайт приёма и запуск колледжа. Ссылка: https://mgu-edu.ru
-4. Life Tracker (2021), роль Author & Solo Dev. iOS-приложение для привычек, дат и списков. Ссылка: App Store.
+1. HRM SaaS (2025–2026), роль Team Lead / Tech Lead. SaaS для управления персоналом: доступы, подбор и подписки. Страница: https://web-dev.su/projects/hrm-saas/. Публичной ссылки на продукт нет. Источники: сайт и https://career.habr.com/almor
+2. Studybay (2020–2025), роль Senior Fullstack в продуктовой команде Studyworld, не фриланс-заказ. Крупный образовательный сервис для студентов. Страница: https://web-dev.su/projects/studybay/. Ссылка: https://studybay.com. Источники: сайт и https://career.habr.com/almor
+3. МГУ им. Петра Великого (2024), роль Product & Web. Сайт приёма и запуск колледжа. Страница: https://web-dev.su/projects/mgu/. Ссылка: https://mgu-edu.ru. Источник: сайт; в Habr Career отдельной позиции нет.
+4. Life Tracker (2021), роль Author & Solo Dev. iOS-приложение для привычек, дат и списков. Страница: https://web-dev.su/projects/life-tracker/. Ссылка: App Store. Источник: сайт и публичная страница приложения.
+
+На индексе /projects также кратко указаны позиции FBS (2018–2020) и «Сайт консалтинг» (2017–2018) из Habr Career — без отдельных страниц кейсов, потому что нет публичного описания конкретного продукта.
 
 На сайте также указаны дополнительные форматы без отдельных кейсов: 20+ сайтов, 3+ iOS-приложения, 3+ расширения для Chrome, 10+ Telegram-ботов, 4 место Telegram Contest for JS Developers 2024, дизайн нескольких сайтов от идеи до макета, анализ метрик и закупка рекламы.
 

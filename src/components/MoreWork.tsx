@@ -11,14 +11,20 @@ const highlights = [
   { value: "и ещё", label: "многое другое по запросу бизнеса" },
 ] as const;
 
-export function MoreWork() {
+type MoreWorkProps = {
+  headingLevel?: "h2" | "h3";
+};
+
+export function MoreWork({ headingLevel = "h3" }: MoreWorkProps) {
+  const Heading = headingLevel;
+
   return (
     <Reveal>
       <div className="rounded-2xl border border-white/10 bg-card/40 px-4 py-7 backdrop-blur-md sm:px-5 sm:py-8 md:px-8 md:py-10">
         <div className="flex max-w-2xl flex-col gap-2.5 sm:gap-3">
-          <h3 className="text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
+          <Heading className="text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
             Это не все проекты
-          </h3>
+          </Heading>
           <p className="text-sm text-muted-foreground sm:text-base md:text-lg">
             За годы веб-разработки накопилось гораздо
             больше разных форматов и задач.

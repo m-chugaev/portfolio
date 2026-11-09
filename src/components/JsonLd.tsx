@@ -1,7 +1,9 @@
-import { getStructuredData } from "@/lib/seo";
+type JsonLdProps = {
+  data: unknown;
+};
 
-export function JsonLd() {
-  const json = JSON.stringify(getStructuredData()).replace(/</g, "\\u003c");
+export function JsonLd({ data }: JsonLdProps) {
+  const json = JSON.stringify(data).replace(/</g, "\\u003c");
 
   return (
     <script

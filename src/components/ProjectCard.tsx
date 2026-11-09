@@ -1,5 +1,7 @@
 import { ExternalLinkIcon } from "lucide-react";
+import Link from "next/link";
 import type { Project } from "@/data/projects";
+import { projectPath } from "@/data/projects";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,6 +19,7 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const href = project.href;
+  const caseHref = projectPath(project.id);
 
   return (
     <article className="overflow-hidden rounded-2xl border border-border/60 bg-card/20 shadow-sm sm:rounded-[1.75rem] md:relative md:aspect-[16/9] md:min-h-[22rem]">
@@ -38,13 +41,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
             <div className="flex flex-col gap-1.5">
               <h3 className="font-display text-xl leading-none font-semibold tracking-tight sm:text-2xl md:text-3xl">
-                {href ? (
-                  <a href={href} target="_blank" rel="noopener noreferrer">
-                    {project.title}
-                  </a>
-                ) : (
-                  project.title
-                )}
+                <Link href={caseHref}>{project.title}</Link>
               </h3>
               <p className="text-sm leading-snug md:text-base">
                 {project.product}
@@ -63,35 +60,31 @@ export function ProjectCard({ project }: ProjectCardProps) {
               ))}
             </div>
           </CardContent>
-          {href ? (
-            <CardFooter className="flex flex-col items-stretch gap-2 px-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:px-5 md:px-6">
-              <Button className="w-full sm:w-auto" asChild>
-                <a href={href} target="_blank" rel="noopener noreferrer">
-                  Открыть проект
-                  <ExternalLinkIcon data-icon="inline-end" />
-                </a>
-              </Button>
+          <CardFooter className="flex flex-col items-stretch gap-2 px-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:px-5 md:px-6">
+            <Button className="w-full sm:w-auto" asChild>
+              <Link href={caseHref}>Читать кейс</Link>
+            </Button>
+            {href ? (
               <div className="flex w-full items-stretch sm:w-auto sm:flex-wrap sm:items-center sm:gap-2">
-                {project.linkLabel ? (
-                  <div className="flex min-w-0 flex-1 overflow-hidden rounded-full border border-border bg-background/70 shadow-xs sm:contents">
-                    <Button
-                      variant="outline"
-                      className="min-w-0 flex-1 rounded-none rounded-l-full border-0 bg-transparent shadow-none sm:flex-none sm:rounded-full sm:border sm:bg-background/70 sm:shadow-xs"
-                      asChild
-                    >
-                      <a href={href} target="_blank" rel="noopener noreferrer">
-                        <span className="truncate">{project.linkLabel}</span>
-                      </a>
-                    </Button>
-                    <CopyLinkButton href={href} compact className="sm:hidden" />
-                  </div>
-                ) : (
-                  <CopyLinkButton href={href} className="sm:hidden" />
-                )}
+                <div className="flex min-w-0 flex-1 overflow-hidden rounded-full border border-border bg-background/70 shadow-xs sm:contents">
+                  <Button
+                    variant="outline"
+                    className="min-w-0 flex-1 rounded-none rounded-l-full border-0 bg-transparent shadow-none sm:flex-none sm:rounded-full sm:border sm:bg-background/70 sm:shadow-xs"
+                    asChild
+                  >
+                    <a href={href} target="_blank" rel="noopener noreferrer">
+                      <span className="truncate">
+                        {project.linkLabel ?? "Открыть проект"}
+                      </span>
+                      <ExternalLinkIcon data-icon="inline-end" />
+                    </a>
+                  </Button>
+                  <CopyLinkButton href={href} compact className="sm:hidden" />
+                </div>
                 <CopyLinkButton href={href} className="hidden sm:inline-flex" />
               </div>
-            </CardFooter>
-          ) : null}
+            ) : null}
+          </CardFooter>
         </Card>
       </div>
     </article>
