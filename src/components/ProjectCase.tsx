@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { CopyLinkButton } from "./CopyLinkButton";
+import { BeforeAfterCompare } from "./BeforeAfterCompare";
 import { ProjectContactCta } from "./ProjectContactCta";
 import { ProjectGallery } from "./ProjectGallery";
 
@@ -72,7 +73,11 @@ export function ProjectCase({ project }: ProjectCaseProps) {
             { label: project.title },
           ]}
         />
-        <ProjectGallery images={project.images} alt={project.imageAlt} />
+        {project.beforeAfter && project.beforeAfter.length > 0 ? (
+          <BeforeAfterCompare pairs={project.beforeAfter} />
+        ) : (
+          <ProjectGallery images={project.images} alt={project.imageAlt} />
+        )}
         <div className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             <Badge variant="default" className="max-w-full truncate">
@@ -175,7 +180,7 @@ export function ProjectCase({ project }: ProjectCaseProps) {
                     <a
                       href={link.href}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel={link.rel ?? "noopener noreferrer"}
                     >
                       <span className="truncate">{link.label}</span>
                       <ExternalLinkIcon data-icon="inline-end" />

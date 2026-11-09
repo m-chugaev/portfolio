@@ -1,6 +1,18 @@
 export type ProjectLink = {
   href: string;
   label: string;
+  rel?: string;
+};
+
+export type ProjectBeforeAfter = {
+  aspect: "desktop" | "mobile";
+  beforeSrc: string;
+  afterSrc: string;
+  beforeAlt: string;
+  afterAlt: string;
+  beforeLabel: string;
+  afterLabel: string;
+  caption: string;
 };
 
 export type Project = {
@@ -20,6 +32,7 @@ export type Project = {
   extraLinks?: ProjectLink[];
   images: string[];
   imageAlt: string;
+  beforeAfter?: ProjectBeforeAfter[];
   seoTitle: string;
   seoDescription: string;
   jsonLdType: "CreativeWork" | "SoftwareApplication";
@@ -124,6 +137,94 @@ export const projects: Project[] = [
       "По SaaS закрыли 110+ бизнес-целей спринтов: права и роли, сотрудники, графики, табели, расчёты, ведомости, воронка, вакансии и другие модули.",
       "Покрытие backend тестами на 100%.",
       "Собрал команду: нанял frontend и двух дизайнеров, подключил внешнего аналитика.",
+    ],
+  },
+  {
+    id: "poker-club",
+    title: "Концепт редизайна сайта покерного клуба",
+    role: "Концепт / Product & Web",
+    product:
+      "Инициативный концепт посадочной с заявкой — не заказ клуба и не прод на их домене",
+    context: "Собственная инициатива",
+    description:
+      "Собрал концепт редизайна публичного сайта клуба: иерархия заголовков, понятный первый экран и путь заявки. Живёт на monte-carlo.web-dev.su.",
+    year: "2026",
+    period: "2026, концепт на поддомене web-dev.su",
+    tags: ["Next.js", "Landing", "UX"],
+    stack: ["Next.js", "HTML/CSS/JS", "Yandex Maps"],
+    href: "https://monte-carlo.web-dev.su",
+    linkLabel: "Концепт",
+    extraLinks: [
+      {
+        href: "https://pokerperm.ru",
+        label: "Исходный сайт",
+        rel: "nofollow noopener noreferrer",
+      },
+    ],
+    images: [
+      "/promo/poker-club/after-desktop.jpg",
+      "/promo/poker-club/after-mobile.jpg",
+    ],
+    imageAlt: "Первый экран концепта редизайна сайта покерного клуба",
+    beforeAfter: [
+      {
+        aspect: "desktop",
+        beforeSrc: "/promo/poker-club/before-desktop.jpg",
+        afterSrc: "/promo/poker-club/after-desktop.jpg",
+        beforeAlt:
+          "Первый экран исходного сайта pokerperm.ru на десктопе, 9 ноября 2026",
+        afterAlt:
+          "Первый экран концепта monte-carlo.web-dev.su на десктопе, 9 ноября 2026",
+        beforeLabel: "Исходный",
+        afterLabel: "Концепт",
+        caption: "Десктоп, 1440×900: исходный сайт и концепт",
+      },
+      {
+        aspect: "mobile",
+        beforeSrc: "/promo/poker-club/before-mobile.jpg",
+        afterSrc: "/promo/poker-club/after-mobile.jpg",
+        beforeAlt:
+          "Первый экран исходного сайта pokerperm.ru на телефоне, 9 ноября 2026",
+        afterAlt:
+          "Первый экран концепта monte-carlo.web-dev.su на телефоне, 9 ноября 2026",
+        beforeLabel: "Исходный",
+        afterLabel: "Концепт",
+        caption: "Телефон, 390×844: исходный сайт и концепт",
+      },
+    ],
+    seoTitle: "Концепт редизайна сайта покерного клуба · Михаил Чугаев",
+    seoDescription:
+      "Концепт посадочной с заявкой: не заказ клуба и не прод на их домене. Сравнение с исходным сайтом и замеры Lighthouse 9 ноября 2026. Пример, что можно сделать для локального бизнеса.",
+    jsonLdType: "CreativeWork",
+    employment: {
+      employer: "Собственный концепт",
+      kind: "solo",
+      note: "Инициативный концепт редизайна, не клиентский заказ. Открывается на monte-carlo.web-dev.su. В подвале концепта указано: «Придумал и разработал Михаил Чугаев».",
+    },
+    summary: [
+      "Исходный публичный сайт — pokerperm.ru. На нём клуб назван Monte Carlo Poker Club, адрес Пермь, ул. Монастырская, д. 59, на обоих вариантах написано «без денежных ставок» и «18+».",
+      "Концепт — моя инициатива: пример посадочной с заявкой для локального сервиса. Это не внедрение на домене клуба и не совместный релиз. Клуб в тексте кейса не выступает заказчиком.",
+    ],
+    task: [
+      "Показать, как может выглядеть первый экран и путь заявки у локального клуба со спортивным покером.",
+      "Собрать рабочий концепт на своём поддомене, чтобы его можно было открыть ссылкой.",
+    ],
+    roleDetails: [
+      "Концепт / Product & Web: идея, вёрстка и публикация на monte-carlo.web-dev.su.",
+      "Не работа в штате клуба и не закрытый акт с заказчиком — это видно по домену концепта и подписи в его подвале.",
+    ],
+    work: [
+      "Собрал одностраничник с одним h1, секциями с заголовками и lang=\"ru\". В HTML исходного сайта заголовков h1–h6 нет, разметка Tilda.",
+      "На концепте шапка держит телефон и кнопку «Оставить заявку»; заявка, как и на исходном сайте, уходит в VK-сообщения клуба, отдельной HTML-формы нет ни там, ни там.",
+      "На концепте один номер +7 (912) 888-86-99; на исходном сайте рядом ещё +7 (902) 630-99-99.",
+      "Карта: исходный сайт встраивает поиск Яндекса по адресу, концепт — карточку организации Monte-Carlo в тёмной теме.",
+      "На первом экране концепта указано «12 столов», на исходном сайте — «7 столов». Это текст страниц, не проверка зала.",
+    ],
+    results: [
+      "Замеры 9 ноября 2026, Lighthouse 13.6.0, CLI, пресеты desktop и mobile. Это не гарантия прод-скорости клуба.",
+      "Desktop LCP: исходный сайт 6,3 с, концепт 1,0 с. Вес страницы: 10 229 KiB против 1 018 KiB. Performance 68 против 72 — у концепта TBT 700 мс, у исходного 0 мс.",
+      "Mobile LCP: 4,7 с против 3,8 с. Performance 78 против 88. Вес: 1 047 KiB против 879 KiB.",
+      "У концепта html lang=ru, JSON-LD SportsActivityLocation и иерархия заголовков; у исходного сайта lang на html нет. Canonical концепта указывает на pokerperm.ru — это не делает концепт официальным сайтом клуба.",
     ],
   },
   {
