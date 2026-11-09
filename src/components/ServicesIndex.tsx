@@ -61,11 +61,49 @@ export function ServicesIndex() {
                 <span className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                   {service.cardPitch}
                 </span>
+                <span className="text-sm font-medium text-foreground">
+                  {service.priceLabel}
+                </span>
               </span>
             </Link>
           </li>
         ))}
       </ul>
+
+      <section className="flex flex-col gap-4" aria-labelledby="services-terms">
+        <h2
+          id="services-terms"
+          className="text-xl font-semibold tracking-tight sm:text-2xl"
+        >
+          Стоимость и сроки
+        </h2>
+        <ul className="grid gap-3 sm:grid-cols-2">
+          {services.map((service) => (
+            <li key={service.id}>
+              <Link
+                href={servicePath(service.id)}
+                className="flex h-full flex-col gap-2 rounded-2xl border border-border/60 bg-card/40 p-5 transition-colors hover:border-primary/40"
+              >
+                <span className="text-sm text-muted-foreground">
+                  {service.navLabel}
+                </span>
+                <span className="font-medium tracking-tight">
+                  {service.terms.price}
+                </span>
+                {service.terms.timeline ? (
+                  <span className="text-sm leading-relaxed text-muted-foreground">
+                    {service.terms.timeline}
+                  </span>
+                ) : (
+                  <span className="text-sm leading-relaxed text-muted-foreground">
+                    {service.terms.notes[0]}
+                  </span>
+                )}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section className="flex flex-col gap-4" aria-labelledby="services-process">
         <h2
