@@ -341,6 +341,20 @@ export function getServicePageGraph(service: Service) {
           name: "Россия",
         },
         availableLanguage: "ru",
+        ...(service.offerMinPrice && service.offerDescription
+          ? {
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "RUB",
+                description: service.offerDescription,
+                priceSpecification: {
+                  "@type": "PriceSpecification",
+                  priceCurrency: "RUB",
+                  minPrice: service.offerMinPrice,
+                },
+              },
+            }
+          : {}),
       },
       {
         "@type": "FAQPage",

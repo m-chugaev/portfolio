@@ -124,6 +124,24 @@ export function ServicePage({ service }: ServicePageProps) {
         <ItemList items={service.included} />
       </Section>
 
+      <Section id="usloviya" title="Стоимость и сроки">
+        <div className="rounded-2xl border border-primary/25 bg-card/50 p-5 sm:p-6">
+          <p className="text-xl font-semibold tracking-tight sm:text-2xl">
+            {service.terms.price}
+          </p>
+          {service.terms.timeline ? (
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+              {service.terms.timeline}
+            </p>
+          ) : null}
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            {service.terms.notes.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
       <Section id="process" title="Как идёт работа">
         <ol className="grid gap-3 sm:grid-cols-2">
           {workProcess.map((step, index) => (
