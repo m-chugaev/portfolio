@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import "@fontsource/ibm-plex-sans/400.css";
 import "@fontsource/ibm-plex-sans/500.css";
@@ -9,7 +10,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { YandexMetrika } from "@/components/YandexMetrika";
 import { profile } from "@/data/profile";
 import { site } from "@/data/site";
-import { seo } from "@/lib/seo";
+import { getSiteGraph, seo } from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +23,6 @@ export const metadata: Metadata = {
   keywords: [...seo.keywords],
   manifest: "/site.webmanifest",
   alternates: {
-    canonical: "/",
     types: {
       "text/plain": "/llms.txt",
     },
@@ -38,7 +38,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: site.locale,
-    url: "/",
     siteName: profile.name,
     title: seo.title,
     description: seo.description,
@@ -74,12 +73,12 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="ru" className="dark">
       <body className="overflow-x-clip">
-        <JsonLd />
+        <JsonLd data={getSiteGraph()} />
         {children}
         <YandexMetrika />
       </body>

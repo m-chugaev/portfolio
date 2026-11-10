@@ -1,5 +1,6 @@
 import Script from "next/script";
 import { yandexMetrika } from "@/data/site";
+import { YandexMetrikaHit } from "./YandexMetrikaHit";
 
 export function YandexMetrika() {
   const { id, src, watch } = yandexMetrika;
@@ -11,6 +12,7 @@ export function YandexMetrika() {
 window.dataLayer=window.dataLayer||[];
 ym(${id},"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});`}
       </Script>
+      <YandexMetrikaHit />
       <noscript>
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
