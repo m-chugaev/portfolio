@@ -219,29 +219,30 @@ export function ProjectCase({ project }: ProjectCaseProps) {
             .
           </p>
         ) : (
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {relatedServices.map((service) => (
-              <li key={service.id}>
-                <Link
-                  href={servicePath(service.id)}
-                  className="flex h-full flex-col gap-2 rounded-2xl border border-border/60 bg-card/40 p-4 transition-colors hover:border-primary/40"
-                >
-                  <span className="font-medium tracking-tight">{service.h1}</span>
-                  <span className="text-sm text-muted-foreground">
-                    {service.cardPitch}
-                  </span>
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link
-                href={SERVICES_INDEX_PATH}
-                className="flex h-full flex-col justify-center gap-2 rounded-2xl border border-dashed border-border/60 bg-card/20 p-4 text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
-              >
-                Все услуги
-              </Link>
-            </li>
-          </ul>
+          <>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {relatedServices.map((service) => (
+                <li key={service.id}>
+                  <Link
+                    href={servicePath(service.id)}
+                    className="flex h-full flex-col gap-2 rounded-2xl border border-border/60 bg-card/40 p-4 transition-colors hover:border-primary/40"
+                  >
+                    <span className="font-medium tracking-tight">{service.h1}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {service.cardPitch}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Button
+              variant="outline"
+              className="w-full sm:w-auto sm:self-start"
+              asChild
+            >
+              <Link href={SERVICES_INDEX_PATH}>Все услуги</Link>
+            </Button>
+          </>
         )}
       </section>
 

@@ -23,7 +23,7 @@ export function ProjectContactCta() {
             опишите контур, и решим, чем могу помочь.
           </p>
         </div>
-        <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:flex-wrap">
+        <div className="flex w-full shrink-0 flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center md:w-auto md:justify-end">
           <Button size="lg" className="w-full sm:w-auto" asChild>
             <a href={profile.contacts.telegram.href}>
               <MessagesSquareIcon data-icon="inline-start" />
