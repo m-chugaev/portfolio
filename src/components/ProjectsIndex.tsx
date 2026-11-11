@@ -4,6 +4,7 @@ import { projectPath, projects } from "@/data/projects";
 import { profile } from "@/data/profile";
 import { SERVICES_INDEX_PATH } from "@/data/services";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { MoreWork } from "./MoreWork";
 import { ProjectGallery } from "./ProjectGallery";
@@ -62,12 +63,9 @@ export function ProjectsIndex() {
                 <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
                   {project.description}
                 </p>
-                <Link
-                  href={projectPath(project.id)}
-                  className="text-sm font-medium text-primary hover:underline"
-                >
-                  Читать кейс
-                </Link>
+                <Button className="w-full sm:w-auto sm:self-start" asChild>
+                  <Link href={projectPath(project.id)}>Читать кейс</Link>
+                </Button>
               </div>
             </article>
           </li>

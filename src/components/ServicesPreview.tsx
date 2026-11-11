@@ -4,6 +4,7 @@ import {
   servicePath,
   services,
 } from "@/data/services";
+import { Button } from "@/components/ui/button";
 import { IMAGE_FALLBACK_ICON, SafeImage } from "@/components/SafeImage";
 import { Reveal } from "./Reveal";
 
@@ -15,8 +16,8 @@ export function ServicesPreview() {
       aria-labelledby="services-title"
     >
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 sm:gap-8">
-        <div className="flex max-w-2xl flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
-          <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+          <div className="flex max-w-2xl flex-col gap-2">
             <h2
               id="services-title"
               className="text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl"
@@ -28,12 +29,9 @@ export function ServicesPreview() {
               и календарь — после разбора задачи.
             </p>
           </div>
-          <Link
-            href={SERVICES_INDEX_PATH}
-            className="text-sm font-medium text-primary hover:underline sm:mb-1"
-          >
-            Все услуги
-          </Link>
+          <Button variant="outline" className="w-full shrink-0 sm:w-auto" asChild>
+            <Link href={SERVICES_INDEX_PATH}>Все услуги</Link>
+          </Button>
         </div>
         <ul className="grid gap-3 sm:grid-cols-2">
           {services.map((service, index) => (
