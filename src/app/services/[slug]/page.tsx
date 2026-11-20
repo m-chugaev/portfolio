@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { ServicePage } from "@/components/ServicePage";
 import {
+  CONVERSION_SERVICE_ID,
   getServiceById,
   servicePath,
   services,
@@ -16,7 +17,9 @@ type ServiceRouteProps = {
 };
 
 export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.id }));
+  return services
+    .filter((service) => service.id !== CONVERSION_SERVICE_ID)
+    .map((service) => ({ slug: service.id }));
 }
 
 export const dynamicParams = false;
