@@ -15,7 +15,9 @@ import "@fontsource/jetbrains-mono/600.css";
 import "@fontsource/jetbrains-mono/cyrillic-400.css";
 import "@fontsource/jetbrains-mono/cyrillic-500.css";
 import "@fontsource/jetbrains-mono/cyrillic-600.css";
+import { AUDIT_SERVICE_ID } from "@/data/audit";
 import { profile } from "@/data/profile";
+import { QUIZ_SERVICE_ID } from "@/data/quiz";
 import {
   answerParts,
   blockMetrics,
@@ -31,7 +33,12 @@ import {
   processSteps,
   projectedLeads,
 } from "@/data/conversion";
-import { CONVERSION_SERVICE_ID, getServiceById, SERVICES_INDEX_PATH } from "@/data/services";
+import {
+  CONVERSION_SERVICE_ID,
+  getServiceById,
+  SERVICES_INDEX_PATH,
+  servicePath,
+} from "@/data/services";
 import { AnalyticsLoader } from "./AnalyticsLoader";
 import "./conversion.css";
 
@@ -404,6 +411,12 @@ export function ConversionLanding() {
                 </div>
               ))}
             </div>
+            <p className="cv-lead cv-cross">
+              Отдельные страницы:{" "}
+              <Link href={servicePath(AUDIT_SERVICE_ID)}>анализ и аудит конверсии сайта</Link>
+              {" и "}
+              <Link href={servicePath(QUIZ_SERVICE_ID)}>квиз для сайта</Link>.
+            </p>
           </div>
         </section>
 
@@ -501,6 +514,8 @@ export function ConversionLanding() {
           <nav aria-label="Ещё на сайте">
             <Link href="/">Главная</Link>
             <Link href={SERVICES_INDEX_PATH}>Все услуги</Link>
+            <Link href={servicePath(AUDIT_SERVICE_ID)}>Аудит конверсии</Link>
+            <Link href={servicePath(QUIZ_SERVICE_ID)}>Квиз для сайта</Link>
           </nav>
         </div>
       </footer>
