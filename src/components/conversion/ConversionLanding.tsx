@@ -1,5 +1,20 @@
 import Link from "next/link";
-import { Golos_Text, JetBrains_Mono, Unbounded } from "next/font/google";
+import "@fontsource/unbounded/700.css";
+import "@fontsource/unbounded/800.css";
+import "@fontsource/unbounded/cyrillic-700.css";
+import "@fontsource/unbounded/cyrillic-800.css";
+import "@fontsource/golos-text/400.css";
+import "@fontsource/golos-text/500.css";
+import "@fontsource/golos-text/600.css";
+import "@fontsource/golos-text/cyrillic-400.css";
+import "@fontsource/golos-text/cyrillic-500.css";
+import "@fontsource/golos-text/cyrillic-600.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
+import "@fontsource/jetbrains-mono/600.css";
+import "@fontsource/jetbrains-mono/cyrillic-400.css";
+import "@fontsource/jetbrains-mono/cyrillic-500.css";
+import "@fontsource/jetbrains-mono/cyrillic-600.css";
 import { profile } from "@/data/profile";
 import {
   answerParts,
@@ -19,33 +34,6 @@ import {
 import { CONVERSION_SERVICE_ID, getServiceById, SERVICES_INDEX_PATH } from "@/data/services";
 import { AnalyticsLoader } from "./AnalyticsLoader";
 import "./conversion.css";
-
-const display = Unbounded({
-  subsets: ["cyrillic", "latin"],
-  weight: ["700", "800"],
-  display: "swap",
-  variable: "--font-cv-display",
-  preload: true,
-  adjustFontFallback: true,
-});
-
-const body = Golos_Text({
-  subsets: ["cyrillic", "latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-  variable: "--font-cv-body",
-  preload: false,
-  adjustFontFallback: true,
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["cyrillic", "latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-  variable: "--font-cv-mono",
-  preload: false,
-  adjustFontFallback: true,
-});
 
 const metricById = Object.fromEntries(
   blockMetrics.map((metric) => [metric.id, metric]),
@@ -112,7 +100,7 @@ export function ConversionLanding() {
   return (
     <div
       id="cv-root"
-      className={`cv ${display.variable} ${body.variable} ${mono.variable}`}
+      className="cv"
     >
       <a className="cv-skip" href="#cv-main">
         К содержанию

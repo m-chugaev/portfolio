@@ -10,9 +10,9 @@
   --warm: #ffb224;
   --cool: #2f6bff;
   --ok: #0b7a54;
-  --display: var(--font-cv-display), "Arial Black", sans-serif;
-  --body: var(--font-cv-body), "Segoe UI", sans-serif;
-  --mono: var(--font-cv-mono), ui-monospace, menlo, monospace;
+  --display: "Unbounded", "Arial Black", sans-serif;
+  --body: "Golos Text", "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, menlo, monospace;
   --col: min(1200px, calc(100% - 48px));
   position: relative;
   min-height: 100vh;
