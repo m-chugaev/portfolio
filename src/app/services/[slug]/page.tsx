@@ -4,7 +4,10 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { ServicePage } from "@/components/ServicePage";
+import { AUDIT_SERVICE_ID } from "@/data/audit";
+import { QUIZ_SERVICE_ID } from "@/data/quiz";
 import {
+  CONVERSION_SERVICE_ID,
   getServiceById,
   servicePath,
   services,
@@ -15,8 +18,16 @@ type ServiceRouteProps = {
   params: Promise<{ slug: string }>;
 };
 
+const standaloneServiceIds = new Set<string>([
+  CONVERSION_SERVICE_ID,
+  AUDIT_SERVICE_ID,
+  QUIZ_SERVICE_ID,
+]);
+
 export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.id }));
+  return services
+    .filter((service) => !standaloneServiceIds.has(service.id))
+    .map((service) => ({ slug: service.id }));
 }
 
 export const dynamicParams = false;
